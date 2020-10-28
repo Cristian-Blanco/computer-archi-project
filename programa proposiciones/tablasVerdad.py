@@ -1,3 +1,8 @@
+# Arquitectura de Computadores y Laboratorio
+# Integrantes:
+# Christian Yesid Galindo Cano - 20181020111
+# Cristian Javier Martínez Blanco - 20182020155
+
 def recibirProposicion():
     global proposicion, nombres_letras_becedario
     proposicion = proposicion.replace("<-->", "<->")
@@ -8,7 +13,7 @@ def recibirProposicion():
     proposicion = proposicion.replace("]", ")")
     proposicion = proposicion.replace("}", ")")
     proposicion = proposicion.replace("{", "(")
-
+s
     for i in range (len(proposicion)):
         if (proposicion[i] in nombresProposicion) and (proposicion[i] in Variables)==False: Variables.append(proposicion[i])
     Variables.sort()
