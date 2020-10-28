@@ -63,51 +63,6 @@ def combinacionesDistintas(size):
                Renglon[aux].append(i)
                Renglon[aux].append(j)
                aux += 1
-    if size == 3:
-        for i in range(2):
-            for j in range(2):
-                for k in range(2):
-                    Renglon[aux].append(i)
-                    Renglon[aux].append(j)
-                    Renglon[aux].append(k)
-                    aux += 1
-    if size == 4:
-        for i in range(2):
-            for j in range(2):
-                for k in range(2):
-                    for l in range(2):
-                        Renglon[aux].append(i)
-                        Renglon[aux].append(j)
-                        Renglon[aux].append(k)
-                        Renglon[aux].append(l)
-                        aux += 1
-    if size == 5:
-        for i in range(2):
-            for j in range(2):
-                for k in range(2):
-                    for l in range(2):
-                        for a in range(2):
-                            Renglon[aux].append(i)
-                            Renglon[aux].append(j)
-                            Renglon[aux].append(k)
-                            Renglon[aux].append(l)
-                            Renglon[aux].append(a)
-                            aux +=1
-    if size == 6:
-        for i in range(2):
-            for j in range(2):
-                for k in range(2):
-                    for l in range(2):
-                        for a in range(2):
-                            for b in range(2):
-                                Renglon[aux].append(i)
-                                Renglon[aux].append(j)
-                                Renglon[aux].append(k)
-                                Renglon[aux].append(l)
-                                Renglon[aux].append(a)
-                                Renglon[aux].append(b)
-                                aux += 1
-
 
 def parentesisSeparador(cadena):
     global proposicion, contador
