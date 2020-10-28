@@ -63,6 +63,14 @@ def combinacionesDistintas(size):
                Renglon[aux].append(i)
                Renglon[aux].append(j)
                aux += 1
+    if size == 3:
+        for i in range(2):
+            for j in range(2):
+                for k in range(2):
+                    Renglon[aux].append(i)
+                    Renglon[aux].append(j)
+                    Renglon[aux].append(k)
+                    aux += 1
 
 def parentesisSeparador(cadena):
     global proposicion, contador
@@ -258,7 +266,7 @@ print ("""
 
         #Nota:  Se pueden ocupar espacios, no hay distincion
                 entre MAYUSCULAS y minusculas.
-                Se admite un maximo de 6 variables.
+                Se admite un maximo de 3 variables.
         
             """)
 Menu()
