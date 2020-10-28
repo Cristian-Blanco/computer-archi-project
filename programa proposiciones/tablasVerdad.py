@@ -13,7 +13,7 @@ def recibirProposicion():
     proposicion = proposicion.replace("]", ")")
     proposicion = proposicion.replace("}", ")")
     proposicion = proposicion.replace("{", "(")
-s
+    
     for i in range (len(proposicion)):
         if (proposicion[i] in nombresProposicion) and (proposicion[i] in Variables)==False: Variables.append(proposicion[i])
     Variables.sort()
