@@ -1,4 +1,4 @@
-#include <Time.h>
+#include <TimeLib.h>
 #define TRIGGER 3
 #define ECHO 4
 //infrarrojos
@@ -49,8 +49,6 @@ void iniciarTrigger(){
 float calcularDistancia(){
   unsigned long tiempo = pulseIn(ECHO, HIGH);
   float distancia = tiempo * 0.000001*Velocidadsonido/2.0;
-  Serial.print(distancia);
-  Serial.println("cm");
   delay(10);
   return distancia;
 }
@@ -59,12 +57,15 @@ void terminarJuego(int goles1, int goles2){
   for(int i=0;i<4;i++){
     for(int e=0; e<7; e++){
       if(display1[goles1][e]==1){
-        digitalWrite (e + 2, 0);
+        digitalWrite (e + 22, 0);
+      }if(display1[goles2][e]==1){
+        digitalWrite (e + 29, 0);
       }
      }
     delay(200);
     for(int e=0; e<7; e++){
-        digitalWrite (e + 2, display1[goles1][e]);
+        digitalWrite (e + 22, display1[goles1][e]);
+        digitalWrite (e + 29, display1[goles2][e]);
       }
      delay(200);
   }
@@ -75,6 +76,7 @@ void terminarJuego(int goles1, int goles2){
 //SETUP
 void setup()
 {
+  setTime(0,0,0,20,10,2015);
   Serial.begin(9600);
   pinMode(sonido, OUTPUT);
   for (int i=22; i<36; i++){//Definir pines de salida (Display)
@@ -88,15 +90,9 @@ void setup()
 void loop()
 {
   time_t t = now();
-	if(minute(t)<55)
-	  {
-	  if(minute(t)==minute(t)+5){
-		  terminarJuego(goles1,goles2)
-	  }
-	}else{
-	  if((minute(t)+5)%5==(minute(t)%10)){
-	  	terminarJuego(goles1,goles2)
-	  }
+	Serial.println(minute(t));
+	if(minute(t)==1){
+	  terminarJuego(goles1,goles2);
 	}
   iniciarTrigger();
   float distancia = calcularDistancia();
@@ -106,7 +102,6 @@ void loop()
     if(goles1>9){
       goles2++;
       goles1 = 0;
-      Serial.println(goles2 + " " + goles1);
       for (int e=0; e<7; e++){
       digitalWrite (e + 29, display1[goles2][e]);
       }
@@ -115,14 +110,11 @@ void loop()
         goles2=0;
       }
     }
-    Serial.println(goles1);
     for (int e=0; e<7; e++){
       digitalWrite (e + 22, display1[goles1][e]);
     }
     digitalWrite(sonido, LOW);
     delay(3000);
-    Serial.println("OBSTACULO DETECTADO EN VERDE");
-  
   }
  
 }
