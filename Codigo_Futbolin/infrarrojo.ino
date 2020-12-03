@@ -1,3 +1,4 @@
+#include <Time.h>
 #define TRIGGER 3
 #define ECHO 4
 //infrarrojos
@@ -54,6 +55,22 @@ float calcularDistancia(){
   return distancia;
 }
 
+void terminarJuego(int goles1, int goles2){
+  for(int i=0;i<4;i++){
+    for(int e=0; e<7; e++){
+      if(display1[goles1][e]==1){
+        digitalWrite (e + 2, 0);
+      }
+     }
+    delay(200);
+    for(int e=0; e<7; e++){
+        digitalWrite (e + 2, display1[goles1][e]);
+      }
+     delay(200);
+  }
+  exit(0);
+}
+
 
 //SETUP
 void setup()
@@ -70,6 +87,17 @@ void setup()
 
 void loop()
 {
+  time_t t = now();
+	if(minute(t)<55)
+	  {
+	  if(minute(t)==minute(t)+5){
+		  terminarJuego(goles1,goles2)
+	  }
+	}else{
+	  if((minute(t)+5)%5==(minute(t)%10)){
+	  	terminarJuego(goles1,goles2)
+	  }
+	}
   iniciarTrigger();
   float distancia = calcularDistancia();
   if(distancia <= balonDetectado){
